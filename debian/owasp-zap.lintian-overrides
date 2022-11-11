@@ -1,0 +1,8 @@
+owasp-zap: classpath-contains-relative-path
+owasp-zap: copyright-without-copyright-notice
+owasp-zap: initial-upload-closes-no-bugs
+owasp-zap: no-manual-page
+owasp-zap: privacy-breach-generic
+owasp-zap: unknown-java-class-version
+owasp-zap: virtual-package-depends-without-real-package-depends
+owasp-zap: zero-byte-file-in-doc-directory
