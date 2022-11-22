@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+
+SHELL := /bin/bash
+
+override_dh_auto_build:
+
+override_dh_auto_install:
+	install -Dpm755 -d debian/tmp/usr/share/owasp-zap
+	install -Dpm755 -d debian/tmp/usr/share/applications
+	install -Dpm644 -t debian/tmp/usr/share/applications owasp-zap.desktop
+
+override_dh_strip:
+
+override_dh_strip_nondeterminism:
+
+override_dh_shlibdeps:
+
+override_dh_makeshlibs:
+
+override_dh_dwz:
+
+override_dh_auto_test:
+
+override_dh_auto_clean:
+
+%:
+	dh $@	

@@ -1,0 +1,28 @@
+Source: owasp-zap
+Section: java
+Priority: optional
+Standards-Version: 4.5.0
+Maintainer: Wong Hoi Sing Edison <hswong3i@gmail.com>
+Homepage: https://github.com/zaproxy/zaproxy/tags
+Vcs-Browser: https://github.com/alvistack/zaproxy-zaproxy
+Vcs-Git: https://github.com/alvistack/zaproxy-zaproxy.git
+Build-Depends:
+ debhelper,
+ debhelper-compat (= 10),
+
+Package: owasp-zap
+Architecture: all
+Description: Zed Attack Proxy
+ The Zed Attack Proxy (ZAP) is an easy to use integrated penetration
+ testing tool for finding vulnerabilities in web applications. It is
+ designed to be used by people with a wide range of security experience
+ and as such is ideal for developers and functional testers who are new
+ to penetration testing. ZAP provides automated scanners as well as a set
+ of tools that allow you to find security vulnerabilities manually.
+Pre-Depends:
+ fdupes,
+ unzip,
+ wget,
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
