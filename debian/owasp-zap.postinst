@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+ZAP_DOWNLOAD_URL=http://github.com/zaproxy/zaproxy/releases/download/w2023-02-27/ZAP_WEEKLY_D-2023-02-27.zip
+ZAP_DOWNLOAD_DEST=/tmp/ZAP_WEEKLY_D-2023-02-27.zip
+ZAP_DOWNLOAD_CHECKSUM=6bc3f726ca1d8cf7b3527718f1460586c1b7def15b1a9e1d238e5af6aab1fa23
+
+wget -c $ZAP_DOWNLOAD_URL -O $ZAP_DOWNLOAD_DEST
+echo -n "$ZAP_DOWNLOAD_CHECKSUM $ZAP_DOWNLOAD_DEST" | sha256sum -c -
+
+mkdir -p /usr/share/owasp-zap
+find /usr/share/owasp-zap -mindepth 1 | xargs rm -rf || echo $?
+TMP_DIR="$(mktemp -d)" && \
+    unzip -qq -d $TMP_DIR $ZAP_DOWNLOAD_DEST && \
+    cp -rfT $TMP_DIR/* /usr/share/owasp-zap && \
+    rm -rf $TMP_DIR
+
+chmod a+x /usr/share/owasp-zap/zap.sh
+pushd /usr/bin && \
+    ln -fs /usr/share/owasp-zap/zap.sh owasp-zap && \
+    popd
+fdupes -qnrps /usr/share/owasp-zap
+
+#DEBHELPER#
+
+exit 0
