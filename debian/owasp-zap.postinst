@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+ZAP_DOWNLOAD_URL=http://github.com/zaproxy/zaproxy/releases/download/v2.13.0/ZAP_2.13.0_Linux.tar.gz
+ZAP_DOWNLOAD_DEST=/tmp/ZAP_2.13.0_Linux.tar.gz
+ZAP_DOWNLOAD_CHECKSUM=936eb52a0fd390c1ef890c455420d95ce20062fe136ec0927e023e2baf50f549
+
+wget -c $ZAP_DOWNLOAD_URL -O $ZAP_DOWNLOAD_DEST
+echo -n "$ZAP_DOWNLOAD_CHECKSUM $ZAP_DOWNLOAD_DEST" | sha256sum -c -
+
+rm -rf /usr/share/owasp-zap
+mkdir -p /usr/share/owasp-zap
+tar zxf $ZAP_DOWNLOAD_DEST -C /usr/share/owasp-zap --strip-components=1
+
+chmod a+x /usr/share/owasp-zap/zap.sh
+pushd /usr/bin && \
+    ln -fs /usr/share/owasp-zap/zap.sh owasp-zap && \
+    popd
+fdupes -qnrps /usr/share/owasp-zap
+
+#DEBHELPER#
+
+exit 0
