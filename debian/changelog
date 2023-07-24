@@ -1,5 +1,5 @@
-owasp-zap (100:2.11.1-1) UNRELEASED; urgency=medium
+owasp-zap (100:2.13.0+20230724.1b35d0c5-1) UNRELEASED; urgency=medium
 
-  * https://github.com/zaproxy/zaproxy/releases/tag/v2.11.1
+  * https://github.com/zaproxy/zaproxy/releases/tag/w2023-07-24
 
- -- Wong Hoi Sing Edison <hswong3i@gmail.com>  Fri, 22 Jul 2022 11:39:44 +0800
+ -- Wong Hoi Sing Edison <hswong3i@pantarei-design.com>  Mon, 24 Jul 2023 23:43:38 +0800
